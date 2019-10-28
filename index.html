@@ -152,12 +152,212 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JSP和servlet的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JSP和servlet"><a href="#JSP和servlet" class="headerlink" title="JSP和servlet"></a>JSP和servlet</h1><p>JSP:</p>
+<ul>
+<li>JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示</li>
+<li>可以同时做前端和后台</li>
+<li>JSP包含HTML标签和Java脚本语言</li>
+<li>连接数据库 形成动态页面</li>
+<li>有九个内置对象用于进行后台的逻辑控制（request，response，page，session，application，out，pagecontext，config，exception）</li>
+<li>请求与响应（Web服务器收到客户端的HTTP请求，会针对每一次请求，分别创建一个用于代表请求的request对象，和代表响应的response对象。）</li>
+</ul>
+<p>servlet：</p>
+<ul>
+<li>只能做后台</li>
+<li>与JSP一样有九个内置对象用于进行后台的逻辑控制（request，response，page，session，application，out，pagecontext，config，exception）</li>
+<li>doGet和doPost用于页面的跳转（doGet明文传参 传输的数据可以看到，doPost暗文传参 传输的数据看不到）</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/28/JSP和servlet的区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-1022笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><h2 id="实现登录功能"><a href="#实现登录功能" class="headerlink" title="实现登录功能"></a>实现登录功能</h2><h3 id="第一步-创建login-jsp登录页面"><a href="#第一步-创建login-jsp登录页面" class="headerlink" title="第一步: 创建login.jsp登录页面"></a>第一步: 创建login.jsp登录页面</h3><p>在所创建的动态项目his_v1中，于WebContent文件夹下创建login.jsp。其显示效果类似于下图:<br>对应源代码如下： </p>
+<html> <body> <!-- 需要注意的是:xml配置文件中的url-pattern这里写的是/LoginServlet，而在jsp中form表单 的action写的是LoginServlet,而不是/LoginServlet。 --> <form action="LoginServlet" method="post"> <table> 
+<tr> 
+<td colspan="2">登录窗口</td> 
+</tr> 
+<tr>
+<td>用户名：</td>
+<td>
+<input type="text" name="username"> 
+</td>
+</tr> 
+<tr> 
+<td>密码：</td> 
+<td>
+<input type="password" name="password"> 
+</td> 
+</tr> 
+<tr> 
+<td colspan="2"><input type="submit" value="登录"> <a href="register.jsp">注册</a> 
+</td> 
+</tr> 
+</table> 
+</form> 
+</body> 
+</html> 
+
+<h3 id="第二步：创建处理登录判定的Servlet-LoginServlet"><a href="#第二步：创建处理登录判定的Servlet-LoginServlet" class="headerlink" title="第二步：创建处理登录判定的Servlet:LoginServlet"></a>第二步：创建处理登录判定的Servlet:LoginServlet</h3><p>在第一步中的login.jsp中，我们需要特别注意这句代码： </p>
+<form action="LoginServlet" method="post">
+这行代码中有两个属性，说明如下： 
+
+<ul>
+<li>action属性：点击登录按钮后，接下来的动作，这里是转到了LoginServlet。 </li>
+</ul>
+<ul>
+<li><p>method属性：表单中数据的提交方式。<br>接下来，再src文件夹下创建LoginServlet类，其中的doPost()方法参考代码如下：</p>
+<p>  /**   </p>
+<ul>
+<li><p>@see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)   </p>
+</li>
+<li><p>/<br>protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {</p>
+<pre><code>// TODO Auto-generated method stub   
+request.setCharacterEncoding(&quot;utf-8&quot;);//设置request编码   response.setContentType(&quot;text/html;charset=utf-8&quot;);//设置response 编码  
+ String id = request.getParameter(&quot;username&quot;);//获取表单用户名   
+ String pwd = request.getParameter(&quot;password&quot;);//获取表单密码   
+ if(pwd==null || pwd.equals(&quot;&quot;)){//若没有密码，或为空    
+ response.getWriter().print(&quot;密码不能为空！&quot;);//在当前页面 (login.jsp)添加显示一句话。    return;//跳出doPost()方法，等待login.jsp页面再次提交表单。   
+ }   
+ if(id==null || id.equals(&quot;&quot;)){//若没有账号，或为空    
+ response.getWriter().print(&quot;用户名不能为空！&quot;);//在当前页面 (login.jsp)添加显示一句话。    return;//跳出doPost()方法，等待login.jsp页面再次提交表单。   
+ }   
+ if(id.equals(&quot;sam&quot;) &amp;&amp; pwd.equals(&quot;123&quot;)) {//用户名、密码正确    request.getRequestDispatcher(&quot;welcome.jsp&quot;).forward(request, response);//页面转发    
+ //页面跳转的方式：
+
+ + (1)转发：foward(地址栏地址不变);
+ - (2)重定向： redirect(地址栏地址变化)   
+ }else//用户名、密码错误   
+ {    
+     response.getWriter().print(&quot;用户名或密码有误，请重新输 入！&quot;);//在当前页面(login.jsp)添加显示一句话。   
+     return;//跳出doPost()方法，等待login.jsp页面再次提交表单。  
+      }  
+     } 
+ } </code></pre></li>
+</ul>
+</li>
+</ul>
+</form>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/23/1022笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-课堂笔记-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><h2 id="梳理回顾"><a href="#梳理回顾" class="headerlink" title="梳理回顾"></a>梳理回顾</h2><p>前端开发：HTML、CSS、JS(JavaScript) 企业中前端工程师：使用前端框架(BootStrap/easyUI/VUE/Angular)开发。<br>后端开发：JavaSE、JSP、JavaWeb(良好的稳定性、健壮性优于其它语言。<br>企业级应用首选之一) 企业中的后端工程师：使用后端框架(SpringMVC/Struts2、Spring、myBatis)开发。<br>“全栈工程师”<br>C语言:工业控制、嵌入式设备(电磁炉、吸尘器、微波炉。。。)。 </p>
+<h2 id="jsp"><a href="#jsp" class="headerlink" title="jsp"></a>jsp</h2><p>JSP项目是在后台开发框架成熟前使用较多的一种JavaWeb技术，后期会逐渐过度到后台框架。 jvm只能处理 java编译的class文件。 </p>
+<h3 id="JSP和后台框架"><a href="#JSP和后台框架" class="headerlink" title="JSP和后台框架"></a>JSP和后台框架</h3><p>核心技术均为Servlet Servlet在jdk中的包为：javax.servlet.http.HttpServlet。</p>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><ol>
+<li>jsp和servlet的区别和联系：<br>1). jsp经编译后就变成了Servlet. (JSP的本质就是Servlet，JVM只能识别java 的类(.class)，不能识别JSP的代码,Web容器将JSP的代码编译成JVM能够识别的java类)<br>2).jsp更擅长表现于 页面显示,servlet更擅长于逻辑控制.<br>3).Servlet中没有内置对象，Jsp中的内置对象都是必须通过 HttpServletRequest对象，HttpServletResponse对象以及HttpServlet对象得到. Jsp是Servlet的一种简化， 使用Jsp只需要完成程序员需要输出到客户端的内容，Jsp中的Java脚本如何镶嵌到一个类中，由Jsp容器 完成。 而Servlet则是个完整的Java类，这个类的Service方法用于生成对客户端的响应。 </li>
+<li>联系： </li>
+</ol>
+<ul>
+<li>JSP是Servlet技术的扩展，本质上就是Servlet的简易方式。JSP编译后是“类servlet”。 </li>
+<li>Servlet和JSP最主要的不同点在于： </li>
+<li>Servlet的应用逻辑是在Java文件中，并且完全从表示层中的HTML里分离开来。（jsp里面是有html标签， servlet没有html标签） </li>
+<li>而JSP的情况是Java和HTML可以组合成一个扩展名为.jsp的文件。(JSP=java类+HTML) </li>
+<li>JSP侧重于视图，Servlet主要用于控制逻辑。(JSP不能脱离Servlet，但Servelet可独立存在) </li>
+<li>Servlet更多的是类似于一个Controller，用来做控制。 <h2 id="servlet类中的方法"><a href="#servlet类中的方法" class="headerlink" title="servlet类中的方法"></a>servlet类中的方法</h2><h3 id="servlet中的方法"><a href="#servlet中的方法" class="headerlink" title="servlet中的方法"></a>servlet中的方法</h3>doGet()方法：用get方式传输网络数据 get方式：明文传参(地址栏显示)、传输数据较小、<br>doPost()方法：用post方式传输网络数据 post方式：暗文传参(地址栏不显示)、传输数据较大、<h3 id="页面跳转方式"><a href="#页面跳转方式" class="headerlink" title="页面跳转方式"></a>页面跳转方式</h3>页面跳转的方式分类： </li>
+</ul>
+<ol>
+<li>转发：foward(地址栏URL不变)<br>request.getRequestDispatcher(“hello.jsp”).forward(request，response);//页面转发</li>
+<li>重定向：redirect(地址栏URL变化)<br>response.sendRedirect(“资源的URL”);</li>
+<li>两种跳转方式异同： </li>
+</ol>
+<ul>
+<li>转发使用的是getRequestDispatcher()方法;重定向使用的是sendRedirect();</li>
+<li>转发：浏览器URL的地址栏不变。重定向：浏览器URL的地址栏改变；</li>
+<li>转发是服务器行为，重定向是客户端行为；</li>
+<li>转发是浏览器只做了一次访问请求。重定向是浏览器做了至少两次的访问请求； </li>
+<li>转发2次跳转之间传输的信息不会丢失，重定向2次跳转之间传输的信息会丢失（request范围）。</li>
+</ul>
 
       
 

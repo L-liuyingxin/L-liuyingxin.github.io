@@ -152,6 +152,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1031课堂笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="C:%5CUsers%5Chp%5CDesktop%5Czz.png" alt></p>
+<ul>
+<li>bin—-存放启动和关闭Tomcat的脚本文件</li>
+<li>conf—存放Tomcat服务器的各种配置文件</li>
+<li>lib—-存放Tomcat服务器的支撑的jar包</li>
+<li>logs—存放Tomcat的日志文件</li>
+<li>temp—存放Tomcat运行时产生的文件</li>
+<li>webapps-Web资源所在的目录，即共外界访问的web资源的存放目录</li>
+<li>work—Tomcat的工作目录<h2 id="重定向和转发"><a href="#重定向和转发" class="headerlink" title="重定向和转发"></a>重定向和转发</h2><h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3></li>
+<li>重定向是客户端行为。（浏览器重新请求）</li>
+</ul>
+<ul>
+<li>重定向是浏览器做了至少两次请求的（当然也可以重定向多次）</li>
+</ul>
+<ul>
+<li>定向浏览器地址改变</li>
+</ul>
+<ul>
+<li>重定向两次跳转之间传输的数据会丢失（request范围）</li>
+</ul>
+<ul>
+<li>重定向可以指向任何的资源，包括当前应用程序中的其他资源，同一个站点上的其他应用程序中的资源，其他站点的资源（如自己的工程重定向到百度）。注意：传递给HttpServletResponse.sendRedirect 方法的相对URL以/开头，他是相对于整个web站点的根目录<h3 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h3></li>
+<li>转发是服务器行为（这是不经过浏览器的）</li>
+</ul>
+<ul>
+<li>转发是浏览器只做了一次访问请求</li>
+</ul>
+<ul>
+<li>转发浏览器地址不变</li>
+</ul>
+<ul>
+<li>转发两次跳转之间传输的数据不会丢失，所以可以通过request进行数据的传递</li>
+</ul>
+<ul>
+<li>转发只能将请求转发给同一个web应用中的组件<br>注：如果创建了ResquestDispatcher 对象是指定的相对URL以/开头，他是相对与当前的web应用程序的根目录（只能是本工程下的，因为是服务器行为）<br>对于重定向和转发都是用来在servlet中直接跳转页面的，但是其中有很大的差别，重定向是浏览器的行为，转发是服务器的行为，所以重定向大大加大了带宽，但转发也加大了服务器压力 对于参数传递也需要注意，重定向原来的数据消失，而转发的数据还在。对于跳转的页面，重定向可以跳转到其他项目或其他网站，而转发是不可以的，只能是就自己工程下的</li>
+</ul>
+<h3 id="注解和XML"><a href="#注解和XML" class="headerlink" title="注解和XML"></a>注解和XML</h3><p>注解：<br>优点：开发效率高 配置文件不臃肿 也方便快速定位<br>缺点：与Java代码耦合在一起，维护性低<br>XML<br>优点:维护性高<br>缺点：配置文件臃肿<br>现在的企业中 注解使用较多 因为快速便捷</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/30/1031课堂笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JSP和servlet的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -160,17 +244,31 @@
         <h1 id="JSP和servlet"><a href="#JSP和servlet" class="headerlink" title="JSP和servlet"></a>JSP和servlet</h1><p>JSP:</p>
 <ul>
 <li>JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示</li>
-<li>可以同时做前端和后台</li>
+<li>可以同时做前端显示页面和后台控制</li>
 <li>JSP包含HTML标签和Java脚本语言</li>
 <li>连接数据库 形成动态页面</li>
-<li>有九个内置对象用于进行后台的逻辑控制（request，response，page，session，application，out，pagecontext，config，exception）</li>
+<li>有九个内置对象用于进行后台的逻辑控制（request，response，session，application，page，out，pagecontext，config，exception）</li>
 <li>请求与响应（Web服务器收到客户端的HTTP请求，会针对每一次请求，分别创建一个用于代表请求的request对象，和代表响应的response对象。）</li>
-</ul>
-<p>servlet：</p>
-<ul>
-<li>只能做后台</li>
+<li>处理后台逻辑，作为mvc控制</li>
+<li>JSP可以内嵌HTML Java JSTL和EL</li>
+<li>JSP不需要项目中去注册</li>
+<li>常用于小型项目的开发<br>servlet：</li>
+<li>只能做后台控制</li>
 <li>与JSP一样有九个内置对象用于进行后台的逻辑控制（request，response，page，session，application，out，pagecontext，config，exception）</li>
 <li>doGet和doPost用于页面的跳转（doGet明文传参 传输的数据可以看到，doPost暗文传参 传输的数据看不到）</li>
+<li>处理后台逻辑，作为mvc控制</li>
+<li>servlet 只能有Java</li>
+<li>servlet使用时必须需要注册（/web.xml/注解）</li>
+<li>Servlet 常用作框架类的大型项目的开发（Spring，SpringMVC(Struts2.0)。MyBatis）</li>
+</ul>
+<h2 id="九个内置对象"><a href="#九个内置对象" class="headerlink" title="九个内置对象"></a>九个内置对象</h2><ul>
+<li>作用域：page &lt; request/response &lt; session &lt; application</li>
+<li>page 只能在页面中</li>
+<li>request/response 用于页面跳转显示获取属性</li>
+<li>session 用于会话中获取数据 浏览器不关闭 会话就不会关闭</li>
+<li>application 用于应用中的数据 数据始终都存在<h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2></li>
+<li>JSP 获取数据 并显示出来（out对象）</li>
+<li>servlet</li>
 </ul>
 
       

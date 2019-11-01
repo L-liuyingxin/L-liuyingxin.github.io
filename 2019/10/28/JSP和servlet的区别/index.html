@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JSP和servletJSP:  JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示 可以同时做前端和后台 JSP包含HTML标签和Java脚本语言 连接数据库 形成动态页面 有九个内置对象用于进行后台的逻辑控制（request，response，page，session，applicat">
+  <meta name="description" content="JSP和servletJSP:  JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示 可以同时做前端显示页面和后台控制 JSP包含HTML标签和Java脚本语言 连接数据库 形成动态页面 有九个内置对象用于进行后台的逻辑控制（request，response，session，applica">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2019/10/28/JSP和servlet的区别/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JSP和servletJSP:  JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示 可以同时做前端和后台 JSP包含HTML标签和Java脚本语言 连接数据库 形成动态页面 有九个内置对象用于进行后台的逻辑控制（request，response，page，session，applicat">
+<meta property="og:description" content="JSP和servletJSP:  JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示 可以同时做前端显示页面和后台控制 JSP包含HTML标签和Java脚本语言 连接数据库 形成动态页面 有九个内置对象用于进行后台的逻辑控制（request，response，session，applica">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-28T02:45:37.147Z">
+<meta property="og:updated_time" content="2019-10-29T01:51:09.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="JSP和servletJSP:  JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示 可以同时做前端和后台 JSP包含HTML标签和Java脚本语言 连接数据库 形成动态页面 有九个内置对象用于进行后台的逻辑控制（request，response，page，session，applicat">
+<meta name="twitter:description" content="JSP和servletJSP:  JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示 可以同时做前端显示页面和后台控制 JSP包含HTML标签和Java脚本语言 连接数据库 形成动态页面 有九个内置对象用于进行后台的逻辑控制（request，response，session，applica">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -162,17 +162,31 @@
         <h1 id="JSP和servlet"><a href="#JSP和servlet" class="headerlink" title="JSP和servlet"></a>JSP和servlet</h1><p>JSP:</p>
 <ul>
 <li>JSP就是指在HTML中嵌入Java脚本语言，当用户通过浏览器请求访问Web应用时，使JSP容器对请求的JSP进行处理，然后将生成的页面返回客户端浏览器进行显示</li>
-<li>可以同时做前端和后台</li>
+<li>可以同时做前端显示页面和后台控制</li>
 <li>JSP包含HTML标签和Java脚本语言</li>
 <li>连接数据库 形成动态页面</li>
-<li>有九个内置对象用于进行后台的逻辑控制（request，response，page，session，application，out，pagecontext，config，exception）</li>
+<li>有九个内置对象用于进行后台的逻辑控制（request，response，session，application，page，out，pagecontext，config，exception）</li>
 <li>请求与响应（Web服务器收到客户端的HTTP请求，会针对每一次请求，分别创建一个用于代表请求的request对象，和代表响应的response对象。）</li>
-</ul>
-<p>servlet：</p>
-<ul>
-<li>只能做后台</li>
+<li>处理后台逻辑，作为mvc控制</li>
+<li>JSP可以内嵌HTML Java JSTL和EL</li>
+<li>JSP不需要项目中去注册</li>
+<li>常用于小型项目的开发<br>servlet：</li>
+<li>只能做后台控制</li>
 <li>与JSP一样有九个内置对象用于进行后台的逻辑控制（request，response，page，session，application，out，pagecontext，config，exception）</li>
 <li>doGet和doPost用于页面的跳转（doGet明文传参 传输的数据可以看到，doPost暗文传参 传输的数据看不到）</li>
+<li>处理后台逻辑，作为mvc控制</li>
+<li>servlet 只能有Java</li>
+<li>servlet使用时必须需要注册（/web.xml/注解）</li>
+<li>Servlet 常用作框架类的大型项目的开发（Spring，SpringMVC(Struts2.0)。MyBatis）</li>
+</ul>
+<h2 id="九个内置对象"><a href="#九个内置对象" class="headerlink" title="九个内置对象"></a>九个内置对象</h2><ul>
+<li>作用域：page &lt; request/response &lt; session &lt; application</li>
+<li>page 只能在页面中</li>
+<li>request/response 用于页面跳转显示获取属性</li>
+<li>session 用于会话中获取数据 浏览器不关闭 会话就不会关闭</li>
+<li>application 用于应用中的数据 数据始终都存在<h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2></li>
+<li>JSP 获取数据 并显示出来（out对象）</li>
+<li>servlet</li>
 </ul>
 
       
@@ -266,6 +280,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/10/30/1031课堂笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2019/10/23/1022笔记/" id="article-nav-older" class="article-nav-link-wrap">

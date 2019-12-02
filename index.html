@@ -152,6 +152,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JSP登录流程梳理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/02/JSP登录流程梳理/">JSP登录流程梳理</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/02/JSP登录流程梳理/" class="archive-article-date">
+  	<time datetime="2019-12-02T00:40:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JSP登录"><a href="#JSP登录" class="headerlink" title="JSP登录"></a>JSP登录</h1><ol>
+<li>表单提交数据到Servlet的方式<br>整体流程：</li>
+</ol>
+<ul>
+<li>登录页面提交form表单(get或post方式到action指定的位置)的数据到一个Servlet，在其内进行判定是否登录。</li>
+<li>(1)Servlet中的doPost()方法：<ul>
+<li>A. 用Request.getParameter(“[input标签的name属性名]”)方法获取登录页面提交过来的表单数据。</li>
+<li>B. 通过sql的JDBC的Jar包导入，进行数据库连接(连接代码见以往的连接代码)，用sql(类似于select * from user where id =’’, pwd=’’;)查询语句。</li>
+<li>C. 比对判定以上两项的数据，页面跳转(“转发”和”重定向”两种方式取其一)。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>(2)跳转到的页面：登录成功页面(在Session中保存用户信息)/不跳转</li>
+</ul>
+<ol start="2">
+<li>表单提交数据到JSP的方式<br>整体流程：</li>
+</ol>
+<ul>
+<li>登录页面提交form表单(get或post方式到action指定的位置)的数据到一个JSP，在其内进行判定是否登录。</li>
+<li>(1)JSP中的&lt;% %&gt;脚本内容：<ul>
+<li>A.用Request.getParameter(“[input标签的name属性名]”)方法获取登录页面提交过来的表单数据。<ul>
+<li>B.通过sql的JDBC的Jar包导入，进行数据库连接(连接代码见以往的连接代码)，用sql(类似于select * from user where id =’’, pwd=’’;)查询语句。</li>
+</ul>
+</li>
+<li>C.比对判定以上两项的数据，页面跳转(“转发”和”重定向”两种方式取其一)。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>(2)跳转到的页面：登录成功页面(在Session中保存用户信息)/重定向到登录JSP页面，为地址栏添加一个属性(response.sendRedirect(“index.jsp?info=”登录失败”))</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/02/JSP登录流程梳理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySQL数据库增删改查SQL语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
